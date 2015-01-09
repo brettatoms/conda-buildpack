@@ -1,17 +1,18 @@
 MINICONDA_MAJOR=Miniconda3
 MINICONDA_VERSION=3.7.0
+PY_MAJOR_VERSION=${1:-3}
 
 if [ ! -d /app/.heroku/miniconda ]; then
     puts-step "Preparing Python/$MINICONDA_MAJOR Environment ($MINICONDA_VERSION)"
     curl -Os http://repo.continuum.io/miniconda/$MINICONDA_MAJOR-$MINICONDA_VERSION-Linux-x86_64.sh
     bash $MINICONDA_MAJOR-$MINICONDA_VERSION-Linux-x86_64.sh  -p /app/.heroku/miniconda/ -b | indent
-    conda install pip --yes | indent
+    conda install pip --yes python=$PY_MAJOR_VERSION | indent
 fi
 
 
 if [ -f conda-requirements.txt ]; then
     puts-step "Installing dependencies using Conda"
-    conda install --file conda-requirements.txt --yes | indent
+    conda install --file conda-requirements.txt --yes python=$PY_MAJOR_VERSION | indent
 fi
 
 if [ -f requirements.txt ]; then
