@@ -1,6 +1,9 @@
 MINICONDA_MAJOR=Miniconda3
 MINICONDA_VERSION=3.7.0
-: ${PY_MAJOR_VERSION:="3"}
+
+if [ -z "$PY_MAJOR_VERSION" ] ; then
+    PY_MAJOR_VERSION=3
+fi
 
 if [ ! -d /app/.heroku/miniconda ]; then
     puts-step "Preparing Python/$MINICONDA_MAJOR Environment ($MINICONDA_VERSION)"
