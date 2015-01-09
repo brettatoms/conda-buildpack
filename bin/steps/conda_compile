@@ -1,9 +1,9 @@
 if [ -z "$MINICONDA_MAJOR" ] ; then
-    MINICONDA_MAJOR="3"
+    MINICONDA_MAJOR="Miniconda3"
 fi
 
 if [ -z "$MINICONDA_VERSION" ] ; then
-    MINICONDA_VERSION="3"
+    MINICONDA_VERSION="3.7.0"
 fi
 
 if [ ! -d /app/.heroku/miniconda ]; then
